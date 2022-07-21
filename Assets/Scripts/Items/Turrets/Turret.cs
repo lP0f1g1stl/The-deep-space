@@ -21,6 +21,6 @@ public abstract class Turret : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    public virtual void Init(GameObject owner) { }
+    public virtual void Init(Rigidbody2D owner) { }
     public virtual void Shoot(bool isShooting) { }
 }

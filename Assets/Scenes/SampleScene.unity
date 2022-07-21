@@ -2963,6 +2963,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1864743741499222830, guid: 7913e4851961f084a98104632299eb5f, type: 3}
+      propertyPath: _speed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864743741499222830, guid: 7913e4851961f084a98104632299eb5f, type: 3}
+      propertyPath: _minAngle
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864743741499222830, guid: 7913e4851961f084a98104632299eb5f, type: 3}
+      propertyPath: _turnSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864743741499222830, guid: 7913e4851961f084a98104632299eb5f, type: 3}
+      propertyPath: _angleChangeFactor
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2693335549585453855, guid: 7913e4851961f084a98104632299eb5f, type: 3}
       propertyPath: _turret
       value: 
@@ -3040,6 +3056,22 @@ PrefabInstance:
       propertyPath: _turret
       value: 
       objectReference: {fileID: 779144667}
+    - target: {fileID: 3180063058860424380, guid: a9ad63e4a13fe714aafaa9eadcd00b61, type: 3}
+      propertyPath: _speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180063058860424380, guid: a9ad63e4a13fe714aafaa9eadcd00b61, type: 3}
+      propertyPath: _minAngle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180063058860424380, guid: a9ad63e4a13fe714aafaa9eadcd00b61, type: 3}
+      propertyPath: _turnSpeed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180063058860424380, guid: a9ad63e4a13fe714aafaa9eadcd00b61, type: 3}
+      propertyPath: _angleChangeFactor
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9ad63e4a13fe714aafaa9eadcd00b61, type: 3}
 --- !u!1001 &8251322942792894585

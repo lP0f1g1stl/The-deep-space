@@ -41,6 +41,5 @@ public class ShipController : MonoBehaviour
     {
         float speed = IsBoosted == true ? _speed * 2 : _speed;
         _rb.AddRelativeForce(Vector3.up * thrust * speed, ForceMode2D.Force);
-        //CheckThrustForAnimation(thrust);
     }
 }

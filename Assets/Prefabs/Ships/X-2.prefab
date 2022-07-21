@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3066461960512862137}
   - component: {fileID: 3066461960512862134}
   - component: {fileID: 9097081127968114514}
+  - component: {fileID: 3180063058860424380}
   m_Layer: 0
   m_Name: X-2
   m_TagString: Untagged
@@ -138,17 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631fee1a31e8df546a14c0ccfdf0f1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _turnSpeed: 0.2
-  _minAngle: 50
-  _angleChangeFactor: 100
-  _rb: {fileID: 3066461960512862137}
-  _engineHolders:
-  - {fileID: 3066461962185695270}
-  _turretHolders:
-  - {fileID: 3066461960565599345}
-  - {fileID: 3066461960763453272}
-  _jetstreamDeltaPos: 0.02
+  _shipController: {fileID: 3180063058860424380}
+  _trurretsController: {fileID: 7654731350493743701}
+  _engineAnimation: {fileID: 7419377309485852653}
 --- !u!114 &9097081127968114514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +161,23 @@ MonoBehaviour:
   _maxShieldPoints: 0
   _shieldRegeneration: 0
   timer: 1
+--- !u!114 &3180063058860424380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066461960512862139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80705647876f52043b48097f7a61c375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0
+  _turnSpeed: 0
+  _minAngle: 0
+  _angleChangeFactor: 0
+  _rb: {fileID: 3066461960512862137}
 --- !u!1 &3066461960565599347
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3066461962185695272}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.105, z: 0}
+  m_LocalPosition: {x: 0, y: -0.115, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3066461961406650065}
@@ -375,6 +385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2c5ad03748e084f8d407393044772c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _engineHolders:
+  - {fileID: 3066461962185695270}
+  _jetstreamDeltaPos: 0.015
 --- !u!1 &3066461962425886063
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +433,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e9708d463d7e9498346023c3a7bdcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _turretHolders:
+  - {fileID: 3066461960565599345}
+  - {fileID: 3066461960763453272}
 --- !u!1001 &3542363484588953025
 PrefabInstance:
   m_ObjectHideFlags: 0

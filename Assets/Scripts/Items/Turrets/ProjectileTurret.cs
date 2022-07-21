@@ -12,8 +12,9 @@ public class ProjectileTurret : Turret
     private int _currentProjectile;
     private int _maxAmountOfProjectiles;
 
-    public override void Init(GameObject owner)
+    public override void Init(Rigidbody2D owner)
     {
+        _owner = owner;
         _turretAnimator = GetComponent<Animator>();
         _maxAmountOfProjectiles = (int)Mathf.Ceil(_turretData.ProjectileData.LifeTime / (60f / _turretData.FireRate));
         _projectileSpawner.LoadTurret(_turretData.ProjectileData, _maxAmountOfProjectiles, owner.gameObject);

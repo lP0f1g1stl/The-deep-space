@@ -119,6 +119,7 @@ MonoBehaviour:
   _turretData: {fileID: 11400000, guid: 1f483e34ebc753a45a3166c1d14b7e32, type: 2}
   _spawnPoint: {fileID: 1894314964675888887}
   _projectilesHolder: {fileID: 0}
+  _projectileSpawner: {fileID: 5310662298236056243}
 --- !u!1 &4249712780750805271
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1894314964675888887}
+  - component: {fileID: 5310662298236056243}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -149,3 +151,15 @@ Transform:
   m_Father: {fileID: 1732348088600347801}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5310662298236056243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4249712780750805271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463e5755a4c942f48b10317953d08ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class EngineAnimation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private EngineHolder[] _engineHolders;
+    [Space]
+    [SerializeField] private float _jetstreamDeltaPos;
 
-    // Update is called once per frame
-    void Update()
+    public void CheckThrustForAnimation(float thrust)
     {
-        
+        if (thrust < 0.1f)
+        {
+            ChangeEngineAnimationPosition(0);
+        }
+        else if (thrust >= 0.1f && thrust <= 0.5f)
+        {
+            ChangeEngineAnimationPosition(1);
+        }
+        else
+        {
+            ChangeEngineAnimationPosition(2);
+        }
+    }
+    private void ChangeEngineAnimationPosition(int animationPhase)
+    {
+        Vector3 jetstreamPosition = new Vector3(0, -_jetstreamDeltaPos * animationPhase, 0);
+        foreach (EngineHolder engineHolder in _engineHolders)
+        {
+            engineHolder.ChangeAnimationPosition(jetstreamPosition);
+        }
     }
 }

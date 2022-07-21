@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 16555481094969956}
   - component: {fileID: 2730424880878323540}
   - component: {fileID: 4182182528339210160}
+  - component: {fileID: 1864743741499222830}
   m_Layer: 0
   m_Name: X-3
   m_TagString: Untagged
@@ -102,7 +103,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.04}
+  m_Offset: {x: 0, y: 0.01}
   m_Size: {x: 0.11, y: 0.43}
   m_Direction: 0
 --- !u!70 &7944051754511287503
@@ -118,7 +119,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.07}
+  m_Offset: {x: 0, y: -0.11}
   m_Size: {x: 0.43, y: 0.15}
   m_Direction: 1
 --- !u!50 &16555481094969956
@@ -154,17 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631fee1a31e8df546a14c0ccfdf0f1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1.5
-  _turnSpeed: 0.3
-  _minAngle: 50
-  _angleChangeFactor: 150
-  _rb: {fileID: 16555481094969956}
-  _engineHolders:
-  - {fileID: 2326193290660445404}
-  - {fileID: 1197566014837875281}
-  _turretHolders:
-  - {fileID: 2693335549585453855}
-  _jetstreamDeltaPos: 0.02
+  _shipController: {fileID: 1864743741499222830}
+  _trurretsController: {fileID: 4858106365585659802}
+  _engineAnimation: {fileID: 3805530781167019427}
 --- !u!114 &4182182528339210160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +177,23 @@ MonoBehaviour:
   _maxShieldPoints: 0
   _shieldRegeneration: 0
   timer: 1
+--- !u!114 &1864743741499222830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87644826941288312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80705647876f52043b48097f7a61c375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0
+  _turnSpeed: 0
+  _minAngle: 0
+  _angleChangeFactor: 0
+  _rb: {fileID: 16555481094969956}
 --- !u!1 &501763310021900902
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501763310021900902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.16, z: 0}
+  m_LocalPosition: {x: 0.04, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8118490353864670855}
@@ -254,7 +264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453041473981721909}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.04, y: -0.16, z: 0}
+  m_LocalPosition: {x: -0.04, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5066172886481410892}
@@ -327,6 +337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1832312177192845673}
+  - component: {fileID: 3805530781167019427}
   m_Layer: 0
   m_Name: Engines
   m_TagString: Untagged
@@ -350,6 +361,22 @@ Transform:
   m_Father: {fileID: 87644826941288318}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3805530781167019427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3770832325689815021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2c5ad03748e084f8d407393044772c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _engineHolders:
+  - {fileID: 2326193290660445404}
+  - {fileID: 1197566014837875281}
+  _jetstreamDeltaPos: 0.015
 --- !u!1 &4549702023231541133
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7220067788952427739}
+  - component: {fileID: 4858106365585659802}
   m_Layer: 0
   m_Name: Turrets
   m_TagString: Untagged
@@ -381,6 +409,20 @@ Transform:
   m_Father: {fileID: 87644826941288318}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4858106365585659802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4549702023231541133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e9708d463d7e9498346023c3a7bdcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _turretHolders:
+  - {fileID: 2693335549585453855}
 --- !u!1001 &6767198696001618012
 PrefabInstance:
   m_ObjectHideFlags: 0

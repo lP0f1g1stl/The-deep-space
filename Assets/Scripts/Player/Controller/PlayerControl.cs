@@ -39,7 +39,8 @@ public class PlayerControl : MonoBehaviour
         _onJSDrag = onDrag;
         if (!_onJSDrag) 
         {
-            _ship.ChangeThrust(0);
+            _ship.ShipController.ChangeThrust(0);
+            _ship.EngineAnimation.CheckThrustForAnimation(0);
         }
     }
     private void PlayerMovement() 
@@ -51,20 +52,21 @@ public class PlayerControl : MonoBehaviour
             if (angleJS < 0.1) angleJS = 360 + angleJS;
             float angleShip = _ship.transform.rotation.eulerAngles.z;
             float thrust = direction.sqrMagnitude;
-            _ship.ChangeThrust(thrust);
+            _ship.ShipController.ChangeThrust(thrust);
+            _ship.EngineAnimation.CheckThrustForAnimation(thrust);
             if (angleShip < angleJS)
             {
-                _ship.CalculateAngles(1, angleJS, angleShip);
+                _ship.ShipController.CalculateAngles(1, angleJS, angleShip);
             }
             else
             {
-                _ship.CalculateAngles(-1, angleJS, angleShip);
+                _ship.ShipController.CalculateAngles(-1, angleJS, angleShip);
             }
         }
     }
     private void Shoot(bool isShooting) 
     {
-        _ship.Shoot(isShooting);
+        _ship.TurretsController.Shoot(isShooting);
     }
     private void LaunchMissile() 
     {
@@ -72,6 +74,6 @@ public class PlayerControl : MonoBehaviour
     }
     private void Boost(bool isBoosting) 
     {
-        _ship.IsBoosted = isBoosting;
+        _ship.ShipController.IsBoosted = isBoosting;
     }
 }

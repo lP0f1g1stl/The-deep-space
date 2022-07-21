@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86b41ae80c22554d8ca0bb7c9ada455, type: 3}
+  m_Name: X-3
+  m_EditorClassIdentifier: 
+  _id: 0
+  _hp: 100
+  _minAngle: 0
+  _angleFactor: 0
+  _cargoWeight: 10
+  _description: 
+  _shipIcon: {fileID: 0}
+  _shipPrefab: {fileID: 0}
+  _shipType: 0
