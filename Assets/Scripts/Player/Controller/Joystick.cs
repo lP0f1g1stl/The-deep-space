@@ -31,7 +31,6 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
                 ped.position,
                 ped.pressEventCamera,
                 out position);
-        Debug.Log(ped.position);
         position.x = (position.x / _jsContainer.rectTransform.sizeDelta.x);
         position.y = (position.y / _jsContainer.rectTransform.sizeDelta.y);
 
@@ -47,7 +46,6 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
     }
     public void OnPointerDown(PointerEventData ped)
     {
-        Debug.Log("!");
         ChangeJSState(true);
         OnDrag(ped);
         OnJSDrag?.Invoke(true);

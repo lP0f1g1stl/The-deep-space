@@ -8,9 +8,12 @@ public class EquipmentCell : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private ItemType _itemType;
 
-    public event Action OnCellClick;
+    bool _isActive;
+
+    public event Action<bool> OnCellClick;
     public void OnPointerDown(PointerEventData eventData) 
     {
-        OnCellClick?.Invoke();
+        _isActive = true;
+        OnCellClick?.Invoke(_isActive);
     }
 }

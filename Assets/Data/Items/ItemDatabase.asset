@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abd248caf3861745a08a1c5bd07dc96, type: 3}
   m_Name: ItemDatabase
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: 9ffd123d679996b4a84151fd94d22823, type: 2}
+  _items: []
+  _turrets:
+  - {fileID: 11400000, guid: e8b735089ad01da44a021d7cd5714a9c, type: 2}
+  - {fileID: 11400000, guid: cddad56ea1d04ab4d9d14eaa272724fb, type: 2}
   - {fileID: 11400000, guid: 1f483e34ebc753a45a3166c1d14b7e32, type: 2}
+  _engines: []
+  _shields: []
+  _missiles: []
+  _ammo:
+  - {fileID: 11400000, guid: 5262c13e044b8f64a8d4230c7540e3f0, type: 2}
+  - {fileID: 11400000, guid: 7052a44387fa45749a31bd0189a81861, type: 2}
+  - {fileID: 11400000, guid: 9ffd123d679996b4a84151fd94d22823, type: 2}

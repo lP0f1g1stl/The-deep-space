@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class ItemBaseData : ScriptableObject
 {
     [SerializeField] protected int _id;
+    [SerializeField] protected string _name;
     [SerializeField] protected int _price;
     [SerializeField] protected int _weight;
     [SerializeField] protected Sprite _itemIcon;
@@ -14,6 +15,7 @@ public abstract class ItemBaseData : ScriptableObject
     [SerializeField] protected GameObject _prefabTest;
 
     public int ItemID => _id;
+    public string Name => _name;
     public int Price => _price;
     public int Weight => _weight;
     public Sprite ItemIcon => _itemIcon;
