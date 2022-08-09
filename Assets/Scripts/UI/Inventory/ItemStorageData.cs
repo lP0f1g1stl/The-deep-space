@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ItemStorageData/CreateNewItemStorage", fileName = "NewItemStorageData")]
 public class ItemStorageData : ScriptableObject
 {
-    [SerializeField] private List
+    [SerializeField] private List<ItemData> items = new List<ItemData>();
 }
 
 [System.Serializable]
