@@ -3,6 +3,6 @@
     Turret,
     Shield,
     Engine,
-    Resource,
-    Ammo
+    Ammo,
+    Other
 }

@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 584848589834990615}
   - component: {fileID: 7705782561656698713}
   m_Layer: 5
-  m_Name: Weight
+  m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,9 +200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Weight
-
-'
+  m_text: Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -229,8 +227,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -494,6 +492,7 @@ GameObject:
   - component: {fileID: 4966482184041225448}
   - component: {fileID: 3068828678089622626}
   - component: {fileID: 3728620749156737199}
+  - component: {fileID: 2112892945063760899}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -643,9 +642,22 @@ MonoBehaviour:
   _name: {fileID: 3248015664264371150}
   _description: {fileID: 3354611191054686357}
   _amount: {fileID: 5504497327843170471}
-  _weight: {fileID: 14634007607334099}
+  _volume: {fileID: 14634007607334099}
   _price: {fileID: 7698262954107416858}
   _button: {fileID: 3068828678089622626}
+--- !u!114 &2112892945063760899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4966482184041225450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fec333ec9bebe458777ef7488667cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemButton: {fileID: 3728620749156737199}
 --- !u!1 &5016574713483606913
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,8 +885,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

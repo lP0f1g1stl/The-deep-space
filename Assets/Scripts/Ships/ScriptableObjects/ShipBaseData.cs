@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "ShipData/CreateNewShip", fileName = "NewShip")]
 [System.Serializable]
@@ -11,11 +9,12 @@ public class ShipBaseData : ScriptableObject
     [Space]
     [SerializeField] private float _minAngle;
     [SerializeField] private float _angleFactor;
-    [SerializeField] private float _cargoWeight;
+    [SerializeField] private float _cargoSize;
     [Space]
     [SerializeField] private string _description;
     [Space]
     [SerializeField] private Sprite _shipIcon;
+    [SerializeField] private SchemeHandler _scheme;
     [SerializeField] private GameObject _shipPrefab;
     [Space]
     [SerializeField] private ShipType _shipType;
@@ -24,8 +23,10 @@ public class ShipBaseData : ScriptableObject
     public int HP => _hp;
     public float MinAngle => _minAngle;
     public float AngleFactor => _angleFactor;
-    public float CargoWeight => _cargoWeight;
+    public float CargoSize => _cargoSize;
+    public string Description => _description;
     public Sprite ShipIcon => _shipIcon;
+    public SchemeHandler Scheme => _scheme;
     public GameObject ShipPrefab => _shipPrefab;
-    public string ShipType => _shipType.ToString();
+    public ShipType ShipType => _shipType;
 }

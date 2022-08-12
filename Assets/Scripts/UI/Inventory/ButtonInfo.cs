@@ -3,9 +3,10 @@ using System;
 
 public class ButtonInfo : MonoBehaviour
 {
-    [SerializeField] private ItemButton _itemButton;
+    [SerializeField] private ItemButtonUI _itemButton;
 
-    private int ItemID { get; set; }
+    public int ItemID { get; set; }
+    public ItemButtonUI ButtonUI => _itemButton;
 
     public event Action<int> OnButtonClick;
 

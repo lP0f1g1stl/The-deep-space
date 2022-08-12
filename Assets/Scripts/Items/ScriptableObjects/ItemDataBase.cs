@@ -1,39 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "DataBase/CreateNewItemDataBase", fileName = "NewItemDatabase")]
 public class ItemDataBase : ScriptableObject
 {
-    [SerializeField] private ItemBaseData[] _items;
+    [SerializeField] private ItemBaseData[] _other;
     [SerializeField] private ItemBaseData[] _turrets;
     [SerializeField] private ItemBaseData[] _engines;
     [SerializeField] private ItemBaseData[] _shields;
-    [SerializeField] private ItemBaseData[] _missiles;
     [SerializeField] private ItemBaseData[] _ammo;
 
-    public ItemBaseData GetItem(int id)
+    public ItemBaseData GetItemData(ItemType itemType, int itemID) 
     {
-        return _items[id];
-    }
-    public ItemBaseData GetTurret(int id)
-    {
-        return _turrets[id];
-    }
-    public ItemBaseData GetEngine(int id)
-    {
-        return _engines[id];
-    }
-    public ItemBaseData GetShield(int id)
-    {
-        return _shields[id];
-    }
-    public ItemBaseData GetMissile(int id)
-    {
-        return _missiles[id];
-    }
-    public ItemBaseData GetAmmo(int id)
-    {
-        return _ammo[id];
+        switch (itemType) 
+        {
+            case ItemType.Turret: return _turrets[itemID];
+            case ItemType.Shield: return _shields[itemID];
+            case ItemType.Engine: return _engines[itemID];
+            case ItemType.Ammo: return _ammo[itemID];
+            case ItemType.Other: return _other[itemID];
+            default: return null;
+        }
     }
 }
