@@ -23,7 +23,7 @@ public class ItemData
         _amount = amount;
         _itemType = itemType;
     }
-    public int ID => _id;
+    public int ItemID => _id;
     public ItemType ItemType => _itemType;
     public int Amount 
     {
