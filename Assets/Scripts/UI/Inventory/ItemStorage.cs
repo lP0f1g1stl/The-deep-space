@@ -6,54 +6,101 @@ public abstract class ItemStorage : MonoBehaviour
     [SerializeField] protected ButtonInfo _itemPrefab;
     [SerializeField] protected Transform _contentHolder;
     [Space]
-    [SerializeField] protected ItemStorageData _storageData;
+    [SerializeField] protected ItemStorageData _storageData; //
+    [Space]
+    [SerializeField] protected StorageType _storageType;
+    [SerializeField] protected StorageType _targetStorageType;
 
-    protected List<ButtonInfo> _itemButtons;
+    protected List<ButtonInfo> _itemButtons = new List<ButtonInfo>();
 
     public ItemDataBase ItemDataBase { get; set; }
+    public AmountPanel AmountPanel { get; set; }
 
-    public void RefreshItemUI()
+    private void OnEnable()
     {
-        _itemButtons.Clear();
-        foreach (ItemData bf in _storageData.Items) 
+        RefreshItemUI();
+        AmountPanel.OnButtonClick += ChangeItemAmount;
+        for(int i = 0; i < _itemButtons.Count; i++) 
         {
-            CreateItemButton(bf.ItemID, bf.Amount, bf.ItemType);
+            _itemButtons[i].OnButtonClick += ShowAmountPanel;
         }
     }
-    public virtual bool AddItem(int itemID, int amount, ItemType itemType) 
+    private void OnDisable()
     {
+        AmountPanel.OnButtonClick -= ChangeItemAmount;
+        for (int i = 0; i < _itemButtons.Count; i++)
+        {
+            _itemButtons[i].OnButtonClick += ShowAmountPanel;
+        }
+    }
+    public void ChangeItemStorage(ItemStorageData itemStorageData)
+    {
+        _storageData = itemStorageData;
+        RefreshItemUI();
+    }
+    private void RefreshItemUI()
+    {
+        for (int i = 0; i < _itemButtons.Count; i++)
+        {
+            Destroy(_itemButtons[i].gameObject);
+        }
+        _itemButtons.Clear();
+        foreach (ItemData bf in _storageData.Items)
+        {
+            CreateItemButton(bf.Amount, bf.ItemID, bf.ItemType);
+        }
+    }
+    public void ChangeItemAmount(int amount, int itemID, ItemType itemType, StorageType storageType, StorageType targetStorageType)
+    {
+        if (amount < 1) return;
+
         int index = _storageData.Items.FindIndex(i => i.ItemID == itemID && i.ItemType == itemType);
         if (index >= 0)
         {
-            _storageData.Items[index].Amount += amount;
-            _itemButtons[index].ButtonUI.ChangeAmount(_storageData.Items[index].Amount.ToString());
+            if (_storageType == targetStorageType)
+            {
+                _storageData.Items[index].Amount += amount;
+            }
+            else if(_storageType == storageType)
+            {
+                _storageData.Items[index].Amount -= amount;
+            }
+            if (_storageData.Items[index].Amount <= 0)
+            {
+                Destroy(_itemButtons[index].gameObject);
+                _storageData.Items.Remove(_storageData.Items[index]);
+                _itemButtons.Remove(_itemButtons[index]);
+            }
+            else
+            {
+                _itemButtons[index].ButtonUI.ChangeAmount(_storageData.Items[index].Amount.ToString());
+            }
         }
-        else
+        else if (_storageType == targetStorageType)
         {
-            _storageData.Items.Add(AddNewItemInStorage(itemID, amount, itemType));
-            CreateItemButton(itemID, amount, itemType);
-        }
-        return true;
-    }
-    public void RemoveItem(int itemID, int amount, ItemType itemType) 
-    {
-        int index = _storageData.Items.FindIndex(i => i.ItemID == itemID && i.ItemType == itemType);
-        _storageData.Items[index].Amount -= amount;
-        if(_storageData.Items[index].Amount <= 0) 
-        {
-            _storageData.Items.Remove(_storageData.Items[index]);
+            _storageData.Items.Add(AddNewItemInStorage(amount, itemID, itemType));
+            CreateItemButton(amount, itemID, itemType);
+            _itemButtons[_itemButtons.Count - 1].OnButtonClick += ShowAmountPanel;
         }
     }
-    private void CreateItemButton(int itemID, int amount, ItemType itemType) 
+    private void CreateItemButton(int amount, int itemID, ItemType itemType) 
     {
         ItemBaseData itemData = ItemDataBase.GetItemData(itemType, itemID);
         _itemButtons.Add(Instantiate(_itemPrefab, _contentHolder));
+        _itemButtons[_itemButtons.Count - 1].ItemID = itemID;
+        _itemButtons[_itemButtons.Count - 1].ItemType = itemType;
         _itemButtons[_itemButtons.Count - 1].ButtonUI.Init(itemData.ItemIcon, itemData.Name, itemData.Description, amount.ToString(), itemData.Volume.ToString(), itemData.Price.ToString());
     }
-    private ItemData AddNewItemInStorage(int id, int amount, ItemType itemtype) 
+    private ItemData AddNewItemInStorage(int amount, int itemID, ItemType itemType) 
     {
         ItemData itemData = new ItemData();
-        itemData.Init(id, amount, itemtype);
+        itemData.Init(amount, itemID, itemType);
         return itemData;
+    }
+    private void ShowAmountPanel(int itemID, ItemType itemType) 
+    {
+        int index = _storageData.Items.FindIndex(i => i.ItemID == itemID && i.ItemType == itemType);
+        AmountPanel.SetData(_storageData.Items[index].Amount, itemID, itemType, _storageType, _targetStorageType);
+        AmountPanel.gameObject.SetActive(true);
     }
 }

@@ -13,17 +13,17 @@ public class ItemStorageData : ScriptableObject
 [System.Serializable]
 public class ItemData
 {
-    [SerializeField] private int _id;
+    [SerializeField] private int _itemID;
     [SerializeField] private int _amount;
     [SerializeField] private ItemType _itemType;
 
-    public void Init(int id, int amount, ItemType itemType) 
+    public void Init(int amount, int itemID, ItemType itemType) 
     {
-        _id = id;
+        _itemID = itemID;
         _amount = amount;
         _itemType = itemType;
     }
-    public int ItemID => _id;
+    public int ItemID => _itemID;
     public ItemType ItemType => _itemType;
     public int Amount 
     {
