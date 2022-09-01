@@ -50,7 +50,7 @@ public abstract class ItemStorage : MonoBehaviour
             CreateItemButton(_storageData.Items[i].Amount, _storageData.Items[i].ItemID, _storageData.Items[i].ItemType);
         }
     }
-    public void ChangeItemAmount(int amount, int itemID, ItemType itemType, StorageType storageType, StorageType targetStorageType)
+    public virtual void ChangeItemAmount(int amount, int itemID, ItemType itemType, StorageType storageType, StorageType targetStorageType)
     {
         if (amount < 1) return;
 

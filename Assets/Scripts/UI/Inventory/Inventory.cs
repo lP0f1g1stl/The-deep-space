@@ -1,14 +1,30 @@
-﻿
+﻿using System;
 public class Inventory : ItemStorage
 {
-    private PlayerData PlayerData { get; set; }
-    /*public override bool AddItem(int itemID, int amount, ItemType itemType)
+    public event Action<ErrorType>ErrorEvent;
+
+    public PlayerData PlayerData { get; set; }
+    public override void ChangeItemAmount(int amount, int itemID, ItemType itemType, StorageType storageType, StorageType targetStorageType)
     {
-        bool check = PlayerData.CurVolume + ItemDataBase.GetItemData(itemType, itemID).Volume <= PlayerData.MaxVolume;
-        if (check)
+        if (!CheckVoulme(amount, itemID, itemType))
         {
-            base.AddItem(itemID, amount, itemType);
+            ErrorEvent?.Invoke(ErrorType.Voulme);
         }
-        return check;
-    }*/
+        else if (!CheckMoney(amount, itemID, itemType)) 
+        {
+            ErrorEvent?.Invoke(ErrorType.Money);
+        }
+        else 
+        {
+            base.ChangeItemAmount(amount, itemID, itemType, storageType, targetStorageType);
+        }
+    }
+    private bool CheckVoulme(int amount, int itemID, ItemType itemType) 
+    {
+        return amount * ItemDataBase.GetItemData(itemType, itemID).Volume + PlayerData.CurVolume <= PlayerData.MaxVolume;
+    }
+    private bool CheckMoney(int amount, int itemID, ItemType itemType) 
+    {
+        return amount* ItemDataBase.GetItemData(itemType, itemID).Price > PlayerData.Money;
+    }
 }
