@@ -45,9 +45,9 @@ public abstract class ItemStorage : MonoBehaviour
             Destroy(_itemButtons[i].gameObject);
         }
         _itemButtons.Clear();
-        foreach (ItemData bf in _storageData.Items)
+        for (int i = 0; i < _storageData.Items.Count; i++) 
         {
-            CreateItemButton(bf.Amount, bf.ItemID, bf.ItemType);
+            CreateItemButton(_storageData.Items[i].Amount, _storageData.Items[i].ItemID, _storageData.Items[i].ItemType);
         }
     }
     public void ChangeItemAmount(int amount, int itemID, ItemType itemType, StorageType storageType, StorageType targetStorageType)
@@ -67,9 +67,7 @@ public abstract class ItemStorage : MonoBehaviour
             }
             if (_storageData.Items[index].Amount <= 0)
             {
-                Destroy(_itemButtons[index].gameObject);
-                _storageData.Items.Remove(_storageData.Items[index]);
-                _itemButtons.Remove(_itemButtons[index]);
+                RemoveItemButton(index);
             }
             else
             {
@@ -78,7 +76,7 @@ public abstract class ItemStorage : MonoBehaviour
         }
         else if (_storageType == targetStorageType)
         {
-            _storageData.Items.Add(AddNewItemInStorage(amount, itemID, itemType));
+            _storageData.Items.Add(CreateNewItem(amount, itemID, itemType));
             CreateItemButton(amount, itemID, itemType);
             _itemButtons[_itemButtons.Count - 1].OnButtonClick += ShowAmountPanel;
         }
@@ -91,7 +89,13 @@ public abstract class ItemStorage : MonoBehaviour
         _itemButtons[_itemButtons.Count - 1].ItemType = itemType;
         _itemButtons[_itemButtons.Count - 1].ButtonUI.Init(itemData.ItemIcon, itemData.Name, itemData.Description, amount.ToString(), itemData.Volume.ToString(), itemData.Price.ToString());
     }
-    private ItemData AddNewItemInStorage(int amount, int itemID, ItemType itemType) 
+    private void RemoveItemButton(int index) 
+    {
+        Destroy(_itemButtons[index].gameObject);
+        _storageData.Items.Remove(_storageData.Items[index]);
+        _itemButtons.Remove(_itemButtons[index]);
+    }
+    private ItemData CreateNewItem(int amount, int itemID, ItemType itemType) 
     {
         ItemData itemData = new ItemData();
         itemData.Init(amount, itemID, itemType);
