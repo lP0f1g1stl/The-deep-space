@@ -18,7 +18,7 @@ public abstract class ItemStorage : MonoBehaviour
 
     private void OnEnable()
     {
-        RefreshItemUI();
+        RefreshUI();
         AmountPanel.OnButtonClick += ChangeItemAmount;
         for(int i = 0; i < _itemButtons.Count; i++) 
         {
@@ -33,12 +33,11 @@ public abstract class ItemStorage : MonoBehaviour
             _itemButtons[i].OnButtonClick += ShowAmountPanel;
         }
     }
-    public void ChangeItemStorage(ItemStorageData itemStorageData)
+    public void ChangeStorageData(ItemStorageData itemStorageData)
     {
         _storageData = itemStorageData;
-        RefreshItemUI();
     }
-    private void RefreshItemUI()
+    private void RefreshUI()
     {
         for (int i = 0; i < _itemButtons.Count; i++)
         {
@@ -101,10 +100,11 @@ public abstract class ItemStorage : MonoBehaviour
         itemData.Init(amount, itemID, itemType);
         return itemData;
     }
-    private void ShowAmountPanel(int itemID, ItemType itemType) 
+    protected virtual void ShowAmountPanel(int itemID, ItemType itemType, int maxAmount = 0) 
     {
         int index = _storageData.Items.FindIndex(i => i.ItemID == itemID && i.ItemType == itemType);
-        AmountPanel.SetData(_storageData.Items[index].Amount, itemID, itemType, _storageType, _targetStorageType);
+        if (maxAmount == 0) maxAmount = _storageData.Items[index].Amount;
+        AmountPanel.SetData(maxAmount, itemID, itemType, _storageType, _targetStorageType);
         AmountPanel.gameObject.SetActive(true);
     }
 }

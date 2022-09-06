@@ -27,4 +27,15 @@ public class Inventory : ItemStorage
     {
         return amount* ItemDataBase.GetItemData(itemType, itemID).Price > PlayerData.Money;
     }
+    protected override void ShowAmountPanel(int itemID, ItemType itemType, int maxAmount) 
+    { 
+        if(_targetStorageType == StorageType.EquipmentCell) 
+        {
+            base.ShowAmountPanel(itemID, itemType, 1);
+        }
+        else 
+        {
+            base.ShowAmountPanel(itemID, itemType);
+        }
+    }
 }

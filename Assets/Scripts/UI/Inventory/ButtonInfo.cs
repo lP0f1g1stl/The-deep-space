@@ -9,7 +9,7 @@ public class ButtonInfo : MonoBehaviour
     public ItemType ItemType { get; set; }
     public ItemButtonUI ButtonUI => _itemButton;
 
-    public event Action<int, ItemType> OnButtonClick;
+    public event Action<int, ItemType, int> OnButtonClick;
 
     private void OnEnable()
     {
@@ -21,6 +21,6 @@ public class ButtonInfo : MonoBehaviour
     }
     private void OnClick() 
     {
-        OnButtonClick?.Invoke(ItemID, ItemType);
+        OnButtonClick?.Invoke(ItemID, ItemType, 0);
     }
 }

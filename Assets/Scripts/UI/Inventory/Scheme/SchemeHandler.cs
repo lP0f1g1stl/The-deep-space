@@ -4,7 +4,7 @@ public class SchemeHandler : MonoBehaviour
 {
     [SerializeField] private EquipmentCell[] _cells;
 
-    private EquipmentCell _currentCell;
+    [SerializeField] private EquipmentCell _currentCell;
     public EquipmentCell CurrentCell => _currentCell;
 
     private void OnEnable()
@@ -23,14 +23,16 @@ public class SchemeHandler : MonoBehaviour
     }
     private void ChangeActiveCell(EquipmentCell cell, bool isActive) 
     {
+        bool isCurrent = _currentCell == cell;  
         _currentCell?.CellUI.ChangeOutlineState(false);
         _currentCell?.ChangeActiveState(false);
         _currentCell = cell;
         _currentCell.CellUI.ChangeOutlineState(!isActive);
         _currentCell.ChangeActiveState(!isActive);
+        if (isCurrent) _currentCell = null;
     }
     public void ChangeItemImage(Sprite newImage) 
     {
-        CurrentCell?.CellUI.ChangeItemImage(newImage);
+        _currentCell.CellUI.ChangeItemImage(newImage);
     }
 }
