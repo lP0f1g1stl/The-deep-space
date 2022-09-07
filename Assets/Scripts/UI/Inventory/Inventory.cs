@@ -1,41 +1,31 @@
-﻿using System;
-public class Inventory : ItemStorage
+﻿public class Inventory : ItemStorage
 {
-    public event Action<ErrorType>ErrorEvent;
-
     public PlayerData PlayerData { get; set; }
-    public override void ChangeItemAmount(int amount, int itemID, ItemType itemType, StorageType storageType, StorageType targetStorageType)
+
+    protected override void ChangeItemAmount(int amount, int itemID, ItemType itemType, StorageType targetStorageType, StorageType storageType) 
     {
-        if (!CheckVoulme(amount, itemID, itemType))
+        if (storageType == StorageType.Shop)
         {
-            ErrorEvent?.Invoke(ErrorType.Voulme);
+            PlayerData.CurVolume += ItemDataBase.GetItemData(itemType, itemID).Volume * amount;
+            PlayerData.Money -= ItemDataBase.GetItemData(itemType, itemID).Price * amount;
         }
-        else if (!CheckMoney(amount, itemID, itemType)) 
+        else if (storageType == StorageType.Warehouse)
         {
-            ErrorEvent?.Invoke(ErrorType.Money);
+            PlayerData.CurVolume += ItemDataBase.GetItemData(itemType, itemID).Volume * amount;
         }
-        else 
+        else if (storageType == StorageType.EquipmentCell)
         {
-            base.ChangeItemAmount(amount, itemID, itemType, storageType, targetStorageType);
+            PlayerData.CurVolume += ItemDataBase.GetItemData(itemType, itemID).Volume * amount;
         }
-    }
-    private bool CheckVoulme(int amount, int itemID, ItemType itemType) 
-    {
-        return amount * ItemDataBase.GetItemData(itemType, itemID).Volume + PlayerData.CurVolume <= PlayerData.MaxVolume;
-    }
-    private bool CheckMoney(int amount, int itemID, ItemType itemType) 
-    {
-        return amount* ItemDataBase.GetItemData(itemType, itemID).Price > PlayerData.Money;
-    }
-    protected override void ShowAmountPanel(int itemID, ItemType itemType, int maxAmount) 
-    { 
-        if(_targetStorageType == StorageType.EquipmentCell) 
+        else if (targetStorageType == StorageType.Shop && storageType == StorageType.Inventory) 
         {
-            base.ShowAmountPanel(itemID, itemType, 1);
+            PlayerData.CurVolume -= ItemDataBase.GetItemData(itemType, itemID).Volume * amount;
+            PlayerData.Money += ItemDataBase.GetItemData(itemType, itemID).Price * amount;
         }
-        else 
+        else if (targetStorageType == StorageType.Warehouse && storageType == StorageType.Inventory) 
         {
-            base.ShowAmountPanel(itemID, itemType);
+            PlayerData.CurVolume -= ItemDataBase.GetItemData(itemType, itemID).Volume * amount;
         }
+        base.ChangeItemAmount(amount, itemID, itemType, targetStorageType, storageType);
     }
 }

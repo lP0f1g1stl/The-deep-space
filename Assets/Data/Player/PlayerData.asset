@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b91df7e79da69468180eefdfd6385b, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _money: 0
+  _money: 100
   _shipID: 0
   _curHP: 0
   _maxHP: 0
   _curSP: 0
   _maxSP: 0
+  _curVolume: 0
+  _maxVolume: 30

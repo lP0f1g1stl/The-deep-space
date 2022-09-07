@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ProjectileTurret : Turret
 {
-    [SerializeField] private Transform _projectilesHolder;
-    [Space]
     [SerializeField] private ProjectileSpawner _projectileSpawner;
     
 

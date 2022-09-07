@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d0b3a189acbca4788f4b7df13d5e45, type: 3}
   m_Name: Mineral
   m_EditorClassIdentifier: 
-  _id: 0
+  _name: 
   _price: 0
-  _weight: 0
+  _volume: 1
   _itemIcon: {fileID: 0}
   _description: 
   _typeOfItem: 3
-  _prefabTest: {fileID: 0}
+  _prefabLoot: {fileID: 0}

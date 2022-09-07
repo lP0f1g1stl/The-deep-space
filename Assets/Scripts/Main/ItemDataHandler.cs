@@ -6,6 +6,7 @@ public class ItemDataHandler : MonoBehaviour
     [SerializeField] private ItemDataBase _itemDataBase;
     [SerializeField] private PlayerData _playerData;
     [Space]
+    [Header("UI")]
     [SerializeField] private AmountPanel _amountPanel;
     [Space]
     [SerializeField] private ItemStorage[] _storages;
@@ -22,5 +23,6 @@ public class ItemDataHandler : MonoBehaviour
                 inventory.PlayerData = _playerData;
             }
         }
+        _amountPanel.SetDataToValidator(_itemDataBase, _playerData);
     }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerInventoryData
   m_EditorClassIdentifier: 
   _items:
-  - _itemID: 0
+  - _itemID: 1
     _amount: 4
-    _itemType: 3
+    _itemType: 0

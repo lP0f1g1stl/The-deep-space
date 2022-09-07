@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a51387dc780724d869106d40bccf00, type: 3}
   m_Name: BlasterTurret
   m_EditorClassIdentifier: 
-  _id: 0
+  _name: 
   _price: 100
-  _weight: 100
+  _volume: 10
   _itemIcon: {fileID: 0}
   _description: 
   _typeOfItem: 0
-  _prefabTest: {fileID: 0}
+  _prefabLoot: {fileID: 0}
   _fireRate: 60
   _projectileData: {fileID: 11400000, guid: 5262c13e044b8f64a8d4230c7540e3f0, type: 2}
   _ammoType: 3

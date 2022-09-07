@@ -11,7 +11,7 @@ public class ProjectileSpawner : MonoBehaviour
         _projectiles = new Projectile[maxAmmunitionAmount];
         for (int i = 0; i < maxAmmunitionAmount; i++)
         {
-            Projectile projectile = Instantiate(projectileData.Prefab,ProjectilesHolder._projectilesHolder);
+            Projectile projectile = Instantiate(projectileData.Prefab, ProjectilesHolder._projectilesHolder);
             projectile.SetData(owner);
             projectile.gameObject.SetActive(false);
             _projectiles[i] = projectile;

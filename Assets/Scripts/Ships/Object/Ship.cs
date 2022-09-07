@@ -11,7 +11,7 @@ public class Ship : MonoBehaviour
     public TurretsController TurretsController => _trurretsController;
     public EngineAnimation EngineAnimation => _engineAnimation;
 
-    private void Awake()
+    private void Start()
     {
         _trurretsController.Init(gameObject.GetComponent<Rigidbody2D>());
     }

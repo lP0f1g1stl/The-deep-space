@@ -10,6 +10,8 @@ public class AmountPanel : MonoBehaviour
     [SerializeField] private Slider _slider;
     [SerializeField] private Button _button;
 
+    private ItemTransferValidator _validator;
+
     private int _itemID;
     private ItemType _itemType;
 
@@ -30,9 +32,14 @@ public class AmountPanel : MonoBehaviour
         _slider.onValueChanged.RemoveListener(ChangeText);
         _inputField.onValueChanged.RemoveListener(ChangeSliderValue);
     }
-    public void SetData(int maxAmount, int itemID, ItemType itemType, StorageType storageType, StorageType targetStorageType) 
+    public void SetDataToValidator(ItemDataBase itemDataBase, PlayerData playerData) 
     {
-        _slider.maxValue = maxAmount;
+        _validator = new ItemTransferValidator();
+        _validator.SetData(itemDataBase, playerData);
+    }
+    public void SetData(int maxAmount, int itemID, ItemType itemType, StorageType targetStorageType, StorageType storageType) 
+    {
+        _slider.maxValue = _validator.CheckMaxAmount(maxAmount, targetStorageType);
         _itemID = itemID;
         _itemType = itemType;
         _targetStorageType = targetStorageType;
@@ -49,7 +56,10 @@ public class AmountPanel : MonoBehaviour
     }
     private void OnClick() 
     {
-        OnButtonClick?.Invoke((int)_slider.value, _itemID, _itemType, _storageType, _targetStorageType);
+        if (_validator.ValidateChange((int)_slider.value, _itemID, _itemType, _targetStorageType, _storageType))
+        {
+            OnButtonClick?.Invoke((int)_slider.value, _itemID, _itemType, _targetStorageType, _storageType);
+        }
         gameObject.SetActive(false);
     }
     private void SetDefault() 

@@ -15,12 +15,11 @@ public abstract class ItemStorage : MonoBehaviour
 
     public ItemDataBase ItemDataBase { get; set; }
     public AmountPanel AmountPanel { get; set; }
-
     private void OnEnable()
     {
         RefreshUI();
         AmountPanel.OnButtonClick += ChangeItemAmount;
-        for(int i = 0; i < _itemButtons.Count; i++) 
+        for (int i = 0; i < _itemButtons.Count; i++)
         {
             _itemButtons[i].OnButtonClick += ShowAmountPanel;
         }
@@ -30,7 +29,7 @@ public abstract class ItemStorage : MonoBehaviour
         AmountPanel.OnButtonClick -= ChangeItemAmount;
         for (int i = 0; i < _itemButtons.Count; i++)
         {
-            _itemButtons[i].OnButtonClick += ShowAmountPanel;
+            _itemButtons[i].OnButtonClick -= ShowAmountPanel;
         }
     }
     public void ChangeStorageData(ItemStorageData itemStorageData)
@@ -49,21 +48,22 @@ public abstract class ItemStorage : MonoBehaviour
             CreateItemButton(_storageData.Items[i].Amount, _storageData.Items[i].ItemID, _storageData.Items[i].ItemType);
         }
     }
-    public virtual void ChangeItemAmount(int amount, int itemID, ItemType itemType, StorageType storageType, StorageType targetStorageType)
+    protected virtual void ChangeItemAmount(int amount, int itemID, ItemType itemType, StorageType targetStorageType, StorageType storageType)
     {
-        if (amount < 1) return;
+        if (amount == 0) return;
 
         int index = _storageData.Items.FindIndex(i => i.ItemID == itemID && i.ItemType == itemType);
         if (index >= 0)
         {
-            if (_storageType == targetStorageType)
+            if (targetStorageType == _storageType)
             {
                 _storageData.Items[index].Amount += amount;
             }
-            else if(_storageType == storageType)
+            else 
             {
                 _storageData.Items[index].Amount -= amount;
             }
+
             if (_storageData.Items[index].Amount <= 0)
             {
                 RemoveItemButton(index);
@@ -73,7 +73,7 @@ public abstract class ItemStorage : MonoBehaviour
                 _itemButtons[index].ButtonUI.ChangeAmount(_storageData.Items[index].Amount.ToString());
             }
         }
-        else if (_storageType == targetStorageType)
+        else
         {
             _storageData.Items.Add(CreateNewItem(amount, itemID, itemType));
             CreateItemButton(amount, itemID, itemType);
@@ -100,11 +100,10 @@ public abstract class ItemStorage : MonoBehaviour
         itemData.Init(amount, itemID, itemType);
         return itemData;
     }
-    protected virtual void ShowAmountPanel(int itemID, ItemType itemType, int maxAmount = 0) 
+    private void ShowAmountPanel(int itemID, ItemType itemType) 
     {
         int index = _storageData.Items.FindIndex(i => i.ItemID == itemID && i.ItemType == itemType);
-        if (maxAmount == 0) maxAmount = _storageData.Items[index].Amount;
-        AmountPanel.SetData(maxAmount, itemID, itemType, _storageType, _targetStorageType);
+        AmountPanel.SetData(_storageData.Items[index].Amount, itemID, itemType, _targetStorageType, _storageType);
         AmountPanel.gameObject.SetActive(true);
     }
 }
